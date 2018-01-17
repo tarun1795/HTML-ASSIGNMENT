@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <script>
+    var errorCallback = function (e) {
+      console.log('Error!', e);
+    };
+    navigator.getUserMedia = navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia ||
+      navigator.msGetUserMedia;
+    if (navigator.getUserMedia) {
+      navigator.getUserMedia({
+        audio: true,
+        video: true
+      }, function (stream) {
+        console.log(stream);
+        var video = document.getElementsByTagName('video')[0];
+        console.log(video);
+        video.src = window.URL.createObjectURL(stream);
+      }, errorCallback);
+    } else {
+      video.src = window.URL.createObjectURL(stream);
+      video.src = 'video.webm';
+    }
+  </script>
+</head>
+
+<body>
+  <center>
+    <video autoplay></video>
+  </center>
+</body>
+
+</html>
